@@ -2,6 +2,9 @@ package xyz.its_me;
 
 import java.io.*;
 
+/**
+ * Zips the src folder into the file build/src.zip using the classes {@link FilesystemFetcher} and {@link ZipCollector}.
+ */
 public class ZipperApplication {
     public static void main(String[] args) {
         zip("src", "build/src.zip");

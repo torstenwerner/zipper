@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Fetches files from the filesystem using the logic from {@link AbstractFileFetcher}.
+ */
 public class FilesystemFetcher extends AbstractFileFetcher<File> {
     public FilesystemFetcher() {
         super(File::isDirectory, File::getName, FilesystemFetcher::getChildren);

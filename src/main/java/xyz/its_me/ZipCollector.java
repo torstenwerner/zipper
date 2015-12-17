@@ -10,9 +10,18 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * Reads any number of InputStreams and zips them into an OutputStream. The current implementation uses {@link
+ * ZipOutputStream} but that can be changed easily. It implements {@link AutoCloseable} which allows using the
+ * try with resources pattern.
+ */
 public class ZipCollector implements AutoCloseable {
     private final ZipOutputStream outputStream;
 
+    /**
+     * Initializes a new ZipCollector with outputStream. The outputStream will be wrapped into an additional {@link
+     * BufferedOutputStream} for performance reasons if it is not a BufferedOutputStream itself.
+     */
     public ZipCollector(OutputStream outputStream) {
         Objects.requireNonNull(outputStream);
 
@@ -23,6 +32,12 @@ public class ZipCollector implements AutoCloseable {
         }
     }
 
+    /**
+     * Adds a new entry to the Zip.
+     *
+     * @param path        the path of the new entry
+     * @param inputStream the content of the new entry
+     */
     public void add(String path, InputStream inputStream) {
         Objects.requireNonNull(path);
         Objects.requireNonNull(inputStream);
